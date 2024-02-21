@@ -1,0 +1,21 @@
+def encrypt(text, shift):
+    result = ""
+    for char in text:
+        if char.isalpha():
+            shifted_char = chr((ord(char.lower()) - ord('a') + shift) % 26 + ord('a'))
+            result += shifted_char.upper() if char.isupper() else shifted_char
+        else:
+            result += char
+    return result
+
+def decrypt(text, shift):
+    return encrypt(text, -shift)
+
+message = input("Введите текст для шифрования: ")
+shift_value = int(input("Введите сдвиг: "))
+
+encrypted_message = encrypt(message, shift_value)
+print("Зашифрованный текст:", encrypted_message)
+
+decrypted_message = decrypt(encrypted_message, shift_value)
+print("Расшифрованный текст:", decrypted_message)
